@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import kademlia.node.Node;
+import java.net.InetAddress;
 
 /**
  * A message used to acknowledge a request from a node; can be used in many situations.
@@ -43,6 +44,13 @@ public class AcknowledgeMessage implements Message
     public Node getOrigin()
     {
         return this.origin;
+    }
+
+    @Override
+    public void setOrigin(InetAddress address, int port)
+    {
+        origin.setInetAddress(address);
+        origin.setPort(port);
     }
 
     @Override

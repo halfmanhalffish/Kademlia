@@ -6,6 +6,7 @@ import java.io.IOException;
 import kademlia.dht.GetParameter;
 import kademlia.node.Node;
 import kademlia.util.serializer.JsonSerializer;
+import java.net.InetAddress;
 
 /**
  * Messages used to send to another node requesting content.
@@ -39,6 +40,13 @@ public class ContentLookupMessage implements Message
     public GetParameter getParameters()
     {
         return this.params;
+    }
+
+    @Override
+    public void setOrigin(InetAddress address, int port)
+    {
+        origin.setInetAddress(address);
+        origin.setPort(port);
     }
 
     public Node getOrigin()

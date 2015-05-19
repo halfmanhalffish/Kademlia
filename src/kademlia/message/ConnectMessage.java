@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import kademlia.node.Node;
+import java.net.InetAddress;
 
 /**
  * A message sent to another node requesting to connect to them.
@@ -37,6 +38,13 @@ public class ConnectMessage implements Message
     public void toStream(DataOutputStream out) throws IOException
     {
         origin.toStream(out);
+    }
+
+    @Override
+    public void setOrigin(InetAddress address, int port)
+    {
+        origin.setInetAddress(address);
+        origin.setPort(port);
     }
 
     public Node getOrigin()

@@ -1,5 +1,7 @@
 package kademlia.message;
 
+import java.net.InetAddress;
+
 public interface Message extends Streamable
 {
 
@@ -11,4 +13,9 @@ public interface Message extends Streamable
      * @return byte A unique code representing the message type
      * */
     public byte code();
+
+    /**
+     * Specify the internet address where the message that this message responds to originated.
+     */
+    void setOrigin(InetAddress address, int port);
 }

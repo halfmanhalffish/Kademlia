@@ -7,6 +7,7 @@ import kademlia.dht.JKademliaStorageEntry;
 import kademlia.dht.KademliaStorageEntry;
 import kademlia.node.Node;
 import kademlia.util.serializer.JsonSerializer;
+import java.net.InetAddress;
 
 /**
  * A Message used to send content between nodes
@@ -60,6 +61,13 @@ public class ContentMessage implements Message
         {
             System.err.println("ClassNotFoundException when reading StorageEntry; Message: " + e.getMessage());
         }
+    }
+
+    @Override
+    public void setOrigin(InetAddress address, int port)
+    {
+        origin.setInetAddress(address);
+        origin.setPort(port);
     }
 
     public Node getOrigin()

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import kademlia.node.Node;
+import java.net.InetAddress;
 
 /**
  * A message used to connect nodes.
@@ -68,6 +69,13 @@ public class NodeReplyMessage implements Message
         {
             n.toStream(out);
         }
+    }
+
+    @Override
+    public void setOrigin(InetAddress address, int port)
+    {
+        origin.setInetAddress(address);
+        origin.setPort(port);
     }
 
     public Node getOrigin()

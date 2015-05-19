@@ -7,6 +7,7 @@ import kademlia.dht.JKademliaStorageEntry;
 import kademlia.dht.KademliaStorageEntry;
 import kademlia.node.Node;
 import kademlia.util.serializer.JsonSerializer;
+import java.net.InetAddress;
 
 /**
  * A StoreContentMessage used to send a store message to a node
@@ -59,6 +60,13 @@ public class StoreContentMessage implements Message
         {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void setOrigin(InetAddress address, int port)
+    {
+        origin.setInetAddress(address);
+        origin.setPort(port);
     }
 
     public Node getOrigin()

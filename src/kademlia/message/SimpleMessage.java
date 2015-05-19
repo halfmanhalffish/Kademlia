@@ -3,6 +3,7 @@ package kademlia.message;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
 
 /**
  * A simple message used for testing the system; Default message constructed if the message type sent is not available
@@ -62,6 +63,13 @@ public class SimpleMessage implements Message
         {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void setOrigin(InetAddress address, int port)
+    {
+        /* do nothing because this method is not applicable to this class - it doesn't have a
+           'Node origin' member */
     }
 
     @Override

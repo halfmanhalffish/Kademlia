@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import kademlia.node.Node;
 import kademlia.node.KademliaId;
+import java.net.InetAddress;
 
 /**
  * A message sent to other nodes requesting the K-Closest nodes to a key sent in this message.
@@ -49,6 +50,13 @@ public class NodeLookupMessage implements Message
     {
         this.origin.toStream(out);
         this.lookupId.toStream(out);
+    }
+
+    @Override
+    public void setOrigin(InetAddress address, int port)
+    {
+        origin.setInetAddress(address);
+        origin.setPort(port);
     }
 
     public Node getOrigin()

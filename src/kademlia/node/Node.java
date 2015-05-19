@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+
 import kademlia.message.Streamable;
 
 /**
@@ -96,13 +97,19 @@ public class Node implements Streamable, Serializable
         /* Load the NodeId */
         this.nodeId = new KademliaId(in);
 
-        /* Load the IP Address */
+        /* An IP Address is present in the incoming network data, but since the sender does not
+         * necessarily know their own external IP address and port it is more reliable to take it
+         * from DatagramPacket.getSocketAddress().  If the ip address and port are kept in the
+         * network data packets then in future it may be possible to use them to allow senders to
+         * override the DatagramPacket's opinion. */
         byte[] ip = new byte[4];
-        in.readFully(ip);
-        this.inetAddress = InetAddress.getByAddress(ip);
+        in.readFully(ip); /* read and ignore */
 
-        /* Read in the port */
-        this.port = in.readInt();
+        in.readInt(); /* read and ignore (see comment above) */
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 
     @Override

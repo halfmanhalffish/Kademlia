@@ -235,6 +235,7 @@ public class KadServer
                         byte messCode = din.readByte();
 
                         Message msg = messageFactory.createMessage(messCode, din);
+                        msg.setOrigin(packet.getAddress(), packet.getPort());
                         din.close();
 
                         /* Get a receiver for this message */
